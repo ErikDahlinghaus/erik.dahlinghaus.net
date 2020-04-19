@@ -1,0 +1,25 @@
+html,
+body {
+  background: #f8f8f8;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  display: inline-block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 30em;
+  height: auto;
+  margin: auto;
+  margin-top: 20em;
+}
+
+#site-name {
+  font-size: 3em;
+  text-align: center;
+}
