@@ -16,6 +16,15 @@ A boilerplate for [Sails](http://sailsjs.org) apps with a [React](https://facebo
 
 ___
 
+## Erik
+```
+/api
+/assets/components
+/types
+```
+
+___
+
 ### Clone
 
 ```shell

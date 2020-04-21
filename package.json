@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "@sailshq/lodash": "^3.10.3",
+    "@types/express": "^4.17.6",
+    "@types/node": "^13.13.1",
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.6",
     "@types/react-router-dom": "^5.1.4",
@@ -33,6 +35,7 @@
     "sails": "^1.2.4",
     "sails-disk": "^1.0.1",
     "ts-loader": "^7.0.0",
+    "ts-node": "^8.9.0",
     "typescript": "^3.8.3",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11"
@@ -52,7 +55,6 @@
   "author": "Erik Dahlinghaus <erik.dahlinghaus@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@tanepiper/robots-webpack-plugin": "^0.4.0",
     "autoprefixer": "^6.3.6",
     "autoprefixer-loader": "^3.2.0",
     "babel-core": "^6.26.3",

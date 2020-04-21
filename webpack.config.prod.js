@@ -3,7 +3,6 @@ const webpack = require("webpack");
 const SaveAssetsJson = require("assets-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-const RobotsPlugin = require('@tanepiper/robots-webpack-plugin');
 
 module.exports = {
   devtool: "inline-source-map",
@@ -22,7 +21,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, "/public/dist/"),
     pathinfo: true,
-    publicPath: "/dist/",
+    publicPath: "/dist",
     filename: "bundle.[hash].min.js",
   },
 
@@ -55,12 +54,6 @@ module.exports = {
       "process.env": {
         NODE_ENV: JSON.stringify("production"),
       },
-    }),
-    new RobotsPlugin({
-      userAgents: [{
-        name: '*',
-        disallow: ['/', '/cgi-bin']
-      }]
     })
   ],
 
@@ -71,7 +64,7 @@ module.exports = {
         use: ["style-loader", "css-loader?sourceMap", "sass-loader?sourceMap"],
       },
       {
-        test: /\.(ttf|eot|svg|txt|woff)(\?[a-z0-9]+)?$/,
+        test: /\.(ttf|eot|svg|woff)(\?[a-z0-9]+)?$/,
         use: ["file-loader?name=[path][name].[ext]"],
       },
       {
