@@ -1,5 +1,5 @@
 {
-  "name": "dahlinghaus.net",
+  "name": "erik.dahlinghaus.net",
   "private": false,
   "version": "0.0.1",
   "description": "",
@@ -10,6 +10,7 @@
   "dependencies": {
     "@sailshq/lodash": "^3.10.3",
     "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.6",
     "@types/react-router-dom": "^5.1.4",
     "assets-webpack-plugin": "^3.4.0",
     "colors": "^1.1.2",
@@ -46,11 +47,12 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/markmur/sails-react-webpack.git"
+    "url": "git://github.com/ErikDahlinghaus/erik.dahlinghaus.net.git"
   },
-  "author": "Mark Murray <mark@boxfish.com>",
+  "author": "Erik Dahlinghaus <erik.dahlinghaus@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@tanepiper/robots-webpack-plugin": "^0.4.0",
     "autoprefixer": "^6.3.6",
     "autoprefixer-loader": "^3.2.0",
     "babel-core": "^6.26.3",

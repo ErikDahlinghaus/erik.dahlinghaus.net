@@ -3,6 +3,7 @@ const webpack = require("webpack");
 const SaveAssetsJson = require("assets-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const RobotsPlugin = require('@tanepiper/robots-webpack-plugin');
 
 module.exports = {
   devtool: "inline-source-map",
@@ -16,7 +17,7 @@ module.exports = {
   // Report the first error as a hard error instead of tolerating it
   bail: true,
 
-  entry: ["babel-polyfill", "./assets/main.jsx"],
+  entry: ["babel-polyfill", "./assets/main.tsx"],
 
   output: {
     path: path.join(__dirname, "/public/dist/"),
@@ -55,6 +56,12 @@ module.exports = {
         NODE_ENV: JSON.stringify("production"),
       },
     }),
+    new RobotsPlugin({
+      userAgents: [{
+        name: '*',
+        disallow: ['/', '/cgi-bin']
+      }]
+    })
   ],
 
   module: {
@@ -64,7 +71,7 @@ module.exports = {
         use: ["style-loader", "css-loader?sourceMap", "sass-loader?sourceMap"],
       },
       {
-        test: /\.(ttf|eot|svg|woff)(\?[a-z0-9]+)?$/,
+        test: /\.(ttf|eot|svg|txt|woff)(\?[a-z0-9]+)?$/,
         use: ["file-loader?name=[path][name].[ext]"],
       },
       {

@@ -1,40 +1,40 @@
-const path = require('path');
-const webpack = require('webpack');
+const path = require("path");
+const webpack = require("webpack");
 
 module.exports = {
-  mode: 'development',
+  mode: "development",
 
-  devtool: 'cheap-module-eval-source-map',
+  devtool: "cheap-module-eval-source-map",
 
   entry: [
-    'babel-polyfill',
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/dev-server',
-    './assets/main.jsx'
+    "babel-polyfill",
+    "webpack-dev-server/client?http://localhost:8080",
+    "webpack/hot/dev-server",
+    "./assets/main.tsx",
   ],
 
   output: {
-    path: path.join(__dirname, '/public/dist/'),
-    filename: 'bundle.js',
+    path: path.join(__dirname, "/public/dist/"),
+    filename: "bundle.js",
     pathinfo: true,
-    publicPath: 'http://localhost:8080/dist/'
+    publicPath: "http://localhost:8080/dist/",
   },
 
   resolve: {
-    modules: [__dirname, 'node_modules'],
+    modules: [__dirname, "node_modules"],
     alias: {
-      assets: 'assets',
-      styles: 'assets/styles',
-      components: 'assets/components/'
+      assets: "assets",
+      styles: "assets/styles",
+      components: "assets/components/",
     },
-    extensions: ['.webpack.js', '.web.js', '.js', '.jsx']
+    extensions: [".webpack.js", ".web.js", ".js", ".jsx"],
   },
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
-      __ENV__: process.env.NODE_ENV
-    })
+      __ENV__: process.env.NODE_ENV,
+    }),
   ],
 
   module: {
@@ -42,23 +42,23 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader?sourceMap' },
-          { loader: 'sass-loader?sourceMap' }
-        ]
+          { loader: "style-loader" },
+          { loader: "css-loader?sourceMap" },
+          { loader: "sass-loader?sourceMap" },
+        ],
       },
       {
         test: /\.(ttf|eot|svg|woff)(\?[a-z0-9]+)?$/,
-        use: [{ loader: 'file-loader?name=[path][name].[ext]' }]
+        use: [{ loader: "file-loader?name=[path][name].[ext]" }],
       },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: [{ loader: 'babel-loader' }],
-        include: path.join(__dirname, 'assets')
-      }
+        use: [{ loader: "babel-loader" }],
+        include: path.join(__dirname, "assets"),
+      },
     ],
 
-    noParse: /\.min\.js/
-  }
+    noParse: /\.min\.js/,
+  },
 };
