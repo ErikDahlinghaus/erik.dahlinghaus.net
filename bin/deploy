@@ -1,0 +1,15 @@
+#!/bin/bash
+set -euxo pipefail
+
+# Build
+npm install
+
+# Ship
+rsync --delete --force -avvP --exclude='git' \
+    ~/projects/dahlinghaustld/webroot/erik.dahlinghaus.net dahlinghaus.net:/webroot/
+
+# Deploy
+ssh dahlinghaus.net 'sudo systemctl restart sails'
+
+echo "Sails deployed"
+

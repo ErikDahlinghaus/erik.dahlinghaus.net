@@ -1,0 +1,50 @@
+#!/bin/bash
+set -euxo pipefail
+
+# Installs the Sails Systemd Service on the remote host
+host='dahlinghaus.net'
+timeout=7
+
+SERVICE_FILE="/etc/systemd/system/sails.service"
+SERVICE_UNIT='[Unit]
+Description=erik.dahlinghaus.net
+After=network.target
+
+[Service]
+Type=simple
+User=root
+Environment="PATH=/root/.nvm/versions/node/v13.13.0/bin:/sbin:/bin:/usr/sbin:/usr/bin"
+Environment="NVM_DIR=/root/.nvm"
+Environment="NVM_INC=/root/.nvm/versions/node/v13.13.0/include/node"
+WorkingDirectory=/webroot/erik.dahlinghaus.net
+ExecStart=/root/.nvm/versions/node/v13.13.0/bin/node app.js --prod
+Restart=always
+
+[Install]
+WantedBy=multi-user.target'
+
+_ssh () {
+    ssh -x -o ConnectTimeout="$timeout" "$host" "$@"
+}
+
+EXISTING_SERVICE_UNIT="$(_ssh 'cat '"$SERVICE_FILE"' || exit 0')"
+if echo "$EXISTING_SERVICE_UNIT" | grep -q .
+then
+    echo 'Comparing unit files...'
+    if diff <(echo "$SERVICE_UNIT") <(echo "$EXISTING_SERVICE_UNIT")
+    then
+        echo 'Unit file is up to date'
+        exit 0
+    fi
+else
+    echo 'Could not read remote unit file.'
+fi
+
+echo 'Writing unit file to remote'
+echo "$SERVICE_UNIT" | _ssh 'cat | sudo tee '"$SERVICE_FILE"
+echo "Service Installed"
+
+echo 'Enabling and Starting Sails'
+_ssh 'sudo systemctl daemon-reload
+sudo systemctl enable sails
+sudo systemctl start sails'
