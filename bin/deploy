@@ -12,5 +12,3 @@ rsync --delete --force -avvP --exclude='git' \
 ssh dahlinghaus.net 'sudo systemctl restart sails'
 
 echo "Sails deployed"
-
-

@@ -45,7 +45,8 @@
     "dev": "node webpackDevServer",
     "dist": "cross-env NODE_ENV=production webpack -p --config webpack.config.prod.js",
     "postinstall": "npm run dist",
-    "test": "which node; which cross-env"
+    "test": "which node; which cross-env",
+    "deploy": "bin/deploy"
   },
   "main": "app.js",
   "repository": {
